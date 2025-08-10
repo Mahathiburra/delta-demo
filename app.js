@@ -88,10 +88,10 @@ app.use((req,res,next) => {
     next();
 });
 
-app.get("/",(req,res) => {
-  res.render("index", { currUser:
-    req.user || null });
-  });
+app.use((req,res,next) => {
+    res.locals.currentUser=req.user;
+    next();
+});
 
 // app.get("/demouser",async(req,res) => {
 //     let fakeUser = new User({
